@@ -94,7 +94,7 @@ public partial class Form1 : Form
     {
         if (cmbProducto.SelectedIndex < 0)
         {
-            MessageBox.Show("Selecciona un producto.", "Datos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(this, "Selecciona un producto.", "Datos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
@@ -163,7 +163,7 @@ public partial class Form1 : Form
         string? error = LogicaVenta.ValidarVenta(usuario, cliente, carrito);
         if (error != null)
         {
-            MessageBox.Show(error, "Datos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(this, error, "Datos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
@@ -180,12 +180,12 @@ public partial class Form1 : Form
         }
         catch (IOException ex)
         {
-            MessageBox.Show("No se pudo guardar el archivo:\n" + ex.Message, "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, "No se pudo guardar el archivo:\n" + ex.Message, "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
         lblStatus.Text = $"Venta {folio} guardada en: {rutaArchivo}";
-        MessageBox.Show($"Venta guardada con éxito.\n\nFolio: {folio}\nTotal: {total.ToString("C2", cultura)}\nArchivo: {rutaArchivo}",
+        MessageBox.Show(this, $"Venta guardada con éxito.\n\nFolio: {folio}\nTotal: {total.ToString("C2", cultura)}\nArchivo: {rutaArchivo}",
             "Venta registrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         LimpiarCampos();
